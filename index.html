@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Instalación de Programas | Soporte Remoto</title>
+
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Iconos Font Awesome -->
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: transparent;
+    color: white;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 8%;
+
+    background: #10161d;
+    border-bottom: 1px solid #202a34;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #20d66b;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+    margin-left: auto; /* Empuja el menú a la derecha */
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #20d66b;
+}
+
+
+/* =========================
+   MENÚ HAMBURGUESA Y LATERAL
+========================= */
+
+.hamburger-btn {
+    display: none; /* Oculto en computadoras */
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #20d66b;
+    font-size: 26px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 8px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.hamburger-btn:hover {
+    background: rgba(32, 214, 107, 0.1);
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100%;
+    background: #10161d;
+    border-left: 1px solid #202a34;
+    z-index: 1002;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    transition: 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.sidebar-menu.active {
+    right: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #202a34;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: #20d66b;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar-nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
+}
+
+.sidebar-nav a i {
+    color: #20d66b;
+    font-size: 20px;
+    width: 25px;
+}
+
+.sidebar-nav a:hover {
+    background: rgba(32, 214, 107, 0.12);
+    color: #20d66b;
+    transform: translateX(5px);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #202a34;
+}
+
+.sidebar-footer .btn-sidebar-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    background: #20d66b;
+    color: #061008;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.sidebar-footer .btn-sidebar-wa:hover {
+    background: #2bea79;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 650px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 80px 10%;
+
+    background:
+        radial-gradient(circle at 80% 30%, rgba(18, 51, 34, 0.55) 0%, transparent 35%),
+        transparent;
+}
+
+.hero-text {
+    max-width: 650px;
+}
+
+.mini-titulo {
+    color: #20d66b;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 55px;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+h1 span {
+    color: #20d66b;
+}
+
+.hero-text p:not(.mini-titulo) {
+    color: #b8c0c8;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+
+/* BOTON WHATSAPP */
+
+.boton-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 15px 25px;
+
+    background: #20d66b;
+    color: #061008;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.boton-whatsapp i {
+    font-size: 22px;
+}
+
+.boton-whatsapp:hover {
+    transform: translateY(-3px);
+    background: #2bea79;
+}
+
+
+/* =========================
+   TARJETA
+========================= */
+
+.hero-card {
+    width: 330px;
+
+    padding: 40px;
+
+    background: rgba(18, 25, 32, 0.88);
+
+    border: 1px solid #26323d;
+
+    border-radius: 18px;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.hero-card > i {
+    font-size: 50px;
+    color: #20d66b;
+    margin-bottom: 20px;
+}
+
+.hero-card h2 {
+    margin-bottom: 15px;
+}
+
+.hero-card p {
+    color: #aeb7bf;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.check {
+    margin: 12px 0;
+    color: #ddd;
+}
+
+.check i {
+    color: #20d66b;
+    margin-right: 8px;
+}
+
+
+/* =========================
+   SERVICIOS
+========================= */
+
+.servicios {
+    padding: 90px 10%;
+    text-align: center;
+    background: rgba(16, 22, 29, 0.78);
+}
+
+.servicios h2,
+.proceso h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.descripcion {
+    color: #9ca6af;
+    margin-bottom: 50px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.card {
+    width: 300px;
+
+    padding: 35px;
+
+    background: rgba(21, 29, 37, 0.88);
+
+    border: 1px solid #26323d;
+
+    border-radius: 15px;
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #20d66b;
+}
+
+.card i {
+    font-size: 40px;
+    color: #20d66b;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #9da7b0;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   PROCESO
+========================= */
+
+.proceso {
+    padding: 90px 10%;
+    text-align: center;
+}
+
+.pasos {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+
+    margin-top: 50px;
+}
+
+.pasos div {
+    max-width: 220px;
+}
+
+.pasos span {
+    display: flex;
+
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 20px;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #20d66b;
+    color: #061008;
+
+    border-radius: 50%;
+
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.pasos h3 {
+    margin-bottom: 10px;
+}
+
+.pasos p {
+    color: #9da7b0;
+}
+
+
+/* =========================
+   CONTACTO
+========================= */
+
+.contacto {
+    padding: 90px 20px;
+
+    text-align: center;
+
+    background: rgba(16, 22, 29, 0.78);
+}
+
+.contacto h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.contacto p {
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   WHATSAPP FLOTANTE
+========================= */
+
+.whatsapp-flotante {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #20d66b;
+    color: white;
+
+    border-radius: 50%;
+
+    text-decoration: none;
+
+    font-size: 32px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+
+    z-index: 1000;
+
+    transition: 0.3s;
+}
+
+.whatsapp-flotante:hover {
+    transform: scale(1.1);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 25px;
+    text-align: center;
+
+    color: #737d86;
+
+    background: #080c10;
+}
+
+
+/* =========================
+   CELULAR Y TABLET
+========================= */
+
+@media (max-width: 800px) {
+
+    header {
+        position: relative;
+        z-index: 2;
+        padding: 0 5%;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: flex; /* Muestra el botón hamburguesa en móviles */
+        margin-left: auto;
+    }
+
+    .hero {
+        flex-direction: column;
+        gap: 50px;
+
+        padding: 60px 7%;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .hero-card {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .pasos {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+}
+
+/* =================================
+   FONDO ANIMADO TECNOLÓGICO
+================================= */
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Fondo */
+.fondo-animado {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(32, 214, 107, 0.10),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(0, 150, 255, 0.08),
+            transparent 25%
+        ),
+        #080d12;
+}
+
+/* Partículas */
+
+.fondo-animado span {
+    position: absolute;
+
+    display: block;
+
+    width: 4px;
+    height: 4px;
+
+    background: #20d66b;
+
+    border-radius: 50%;
+
+    opacity: 0.6;
+
+    box-shadow:
+        0 0 10px #20d66b,
+        0 0 20px rgba(32,214,107,0.5);
+
+    animation: flotar 12s linear infinite;
+}
+
+
+/* Posiciones */
+
+.fondo-animado span:nth-child(1) {
+    left: 10%;
+    top: 90%;
+    animation-duration: 13s;
+}
+
+.fondo-animado span:nth-child(2) {
+    left: 20%;
+    top: 80%;
+    animation-duration: 17s;
+}
+
+.fondo-animado span:nth-child(3) {
+    left: 30%;
+    top: 95%;
+    animation-duration: 11s;
+}
+
+.fondo-animado span:nth-child(4) {
+    left: 40%;
+    top: 85%;
+    animation-duration: 15s;
+}
+
+.fondo-animado span:nth-child(5) {
+    left: 50%;
+    top: 92%;
+    animation-duration: 18s;
+}
+
+.fondo-animado span:nth-child(6) {
+    left: 60%;
+    top: 75%;
+    animation-duration: 14s;
+}
+
+.fondo-animado span:nth-child(7) {
+    left: 70%;
+    top: 90%;
+    animation-duration: 16s;
+}
+
+.fondo-animado span:nth-child(8) {
+    left: 80%;
+    top: 80%;
+    animation-duration: 12s;
+}
+
+.fondo-animado span:nth-child(9) {
+    left: 90%;
+    top: 95%;
+    animation-duration: 19s;
+}
+
+.fondo-animado span:nth-child(10) {
+    left: 15%;
+    top: 70%;
+    animation-duration: 14s;
+}
+
+.fondo-animado span:nth-child(11) {
+    left: 55%;
+    top: 85%;
+    animation-duration: 17s;
+}
+
+.fondo-animado span:nth-child(12) {
+    left: 85%;
+    top: 65%;
+    animation-duration: 13s;
+}
+
+
+/* Movimiento */
+
+@keyframes flotar {
+
+    0% {
+        transform:
+            translateY(100px)
+            translateX(0)
+            scale(0.5);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.7;
+    }
+
+    50% {
+        transform:
+            translateY(-300px)
+            translateX(80px)
+            scale(1);
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform:
+            translateY(-800px)
+            translateX(-100px)
+            scale(0.3);
+
+        opacity: 0;
+    }
+}
+
+/* Contenido por encima del fondo animado */
+header,
+.hero,
+.servicios,
+.proceso,
+.contacto,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+    
+/* El contenido queda por encima del fondo animado */
+.hero,
+.servicios,
+.proceso,
+.contacto,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Ajuste de escritorio */
+@media (min-width: 801px) {
+    .hero {
+        min-height: 650px;
+        gap: 70px;
+    }
+
+    .hero-text {
+        flex: 1 1 0;
+    }
+
+    .hero-card {
+        flex: 0 0 330px;
+    }
+
+    .cards {
+        flex-wrap: wrap;
+    }
+}
+
+
+.programas{position:relative;z-index:1;padding:90px 8%;background:rgba(8,13,18,.72)}
+.programas-titulo{text-align:center;max-width:700px;margin:0 auto 50px}
+.programas-titulo h2{font-size:38px;margin-bottom:15px}
+.programas-titulo>p:last-child{color:#9ca6af;line-height:1.6}
+.programas-grid{max-width:1150px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.programa-card{padding:28px 22px;text-align:center;background:rgba(18,25,32,.88);border:1px solid #26323d;border-radius:15px;transition:.3s}
+.programa-card:hover{transform:translateY(-7px);border-color:#20d66b;box-shadow:0 12px 35px rgba(0,0,0,.3)}
+.programa-icon{width:65px;height:65px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;border-radius:15px;background:rgba(32,214,107,.1);color:#20d66b;font-size:32px}
+.programa-card h3{margin-bottom:10px}
+.programa-card p{min-height:48px;color:#9da7b0;font-size:14px;line-height:1.5;margin-bottom:20px}
+.programa-card a{display:inline-block;padding:9px 18px;border:1px solid #20d66b;border-radius:7px;color:#20d66b;text-decoration:none;font-size:14px;font-weight:bold;transition:.3s}
+.programa-card a:hover{background:#20d66b;color:#061008}
+@media(max-width:1000px){.programas-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.programas{padding:70px 6%}.programas-titulo h2{font-size:32px}.programas-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+
+<body>
+
+    <div class="fondo-animado">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="logo">
+            Soporte<span>PC</span>
+        </div>
+
+        <nav>
+            <a href="#servicios">Servicios</a>
+            <a href="#programas">Programas</a>
+            <a href="#como-funciona">Cómo funciona</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+
+        <!-- Botón Hamburguesa -->
+        <button class="hamburger-btn" id="openMenu" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- MENÚ LATERAL DESPLEGABLE -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <aside class="sidebar-menu" id="sidebarMenu">
+        <div class="sidebar-header">
+            <div class="logo">
+                Soporte<span>PC</span>
+            </div>
+            <button class="close-btn" id="closeMenu" aria-label="Cerrar menú">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-link"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="#servicios" class="sidebar-link"><i class="fa-solid fa-gears"></i> Servicios</a>
+            <a href="#programas" class="sidebar-link"><i class="fa-solid fa-box-open"></i> Programas</a>
+            <a href="#como-funciona" class="sidebar-link"><i class="fa-solid fa-list-check"></i> ¿Cómo funciona?</a>
+            <a href="https://wa.me/542614726854" target="_blank" class="sidebar-link"><i class="fa-brands fa-whatsapp"></i> Contáctanos</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://wa.me/542614726854" target="_blank" class="btn-sidebar-wa">
+                <i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp
+            </a>
+        </div>
+    </aside>
+
+
+    <!-- PRESENTACIÓN -->
+    <section class="hero">
+
+        <div class="hero-text">
+            <p class="mini-titulo">SOPORTE TÉCNICO REMOTO</p>
+
+            <h1>
+                Instalación de programas
+                <span>sin salir de tu casa</span>
+            </h1>
+
+            <p>
+                Instalamos y configuramos programas en tu PC mediante
+                Escritorio Remoto de forma rápida y sencilla.
+            </p>
+
+            <a class="boton-whatsapp"
+               href="https://wa.me/542614726854"
+               target="_blank">
+
+                <i class="fa-brands fa-whatsapp"></i>
+                Consultar por WhatsApp
+            </a>
+        </div>
+
+        <div class="hero-card">
+
+            <i class="fa-solid fa-laptop-code"></i>
+
+            <h2>Soporte remoto</h2>
+
+            <p>
+                Vos te quedás en tu computadora y nosotros
+                hacemos la instalación de manera remota.
+            </p>
+
+            <div class="check">
+                <i class="fa-solid fa-check"></i>
+                Instalación
+            </div>
+
+            <div class="check">
+                <i class="fa-solid fa-check"></i>
+                Configuración
+            </div>
+
+            <div class="check">
+                <i class="fa-solid fa-check"></i>
+                Asistencia remota
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="servicios">
+
+        <h2>¿Qué hacemos?</h2>
+
+        <p class="descripcion">
+            Servicios de instalación y configuración de software para PC.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <i class="fa-solid fa-download"></i>
+
+                <h3>Instalación</h3>
+
+                <p>
+                    Instalación de programas y herramientas
+                    en tu computadora.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <i class="fa-solid fa-gears"></i>
+
+                <h3>Configuración</h3>
+
+                <p>
+                    Configuramos el programa para que quede
+                    listo para utilizar.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <i class="fa-solid fa-headset"></i>
+
+                <h3>Soporte remoto</h3>
+
+                <p>
+                    Te ayudamos mediante conexión remota
+                    a tu computadora.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROGRAMAS DISPONIBLES -->
+    <section id="programas" class="programas">
+      <div class="programas-titulo">
+        <p class="mini-titulo">SOFTWARE</p>
+        <h2>Programas disponibles</h2>
+        <p>Consultá por la instalación y configuración de los programas que necesitás.</p>
+      </div>
+
+      <div class="programas-grid">
+        <div class="programa-card"><div class="programa-icon"><i class="fa-brands fa-microsoft"></i></div><h3>Microsoft Office</h3><p>Documentos, planillas y presentaciones.</p><a href="https://wa.me/542614726854?text=Hola%2C%20quiero%20consultar%20por%20Microsoft%20Office" target="_blank">Consultar</a></div>
+        <div class="programa-card"><div class="programa-icon"><i class="fa-solid fa-palette"></i></div><h3>Adobe Master Collection</h3><p>Suite completa de diseño, video y edición.</p><a href="https://wa.me/542614726854?text=Hola%2C%20quiero%20consultar%20por%20Adobe%20Master%20Collection" target="_blank">Consultar</a></div>
+        <div class="programa-card"><div class="programa-icon"><i class="fa-solid fa-compass-drafting"></i></div><h3>AutoCAD</h3><p>Diseño, modelado 2D y 3D.</p><a href="https://wa.me/542614726854?text=Hola%2C%20quiero%20consultar%20por%20AutoCAD" target="_blank">Consultar</a></div>
+        <div class="programa-card"><div class="programa-icon"><i class="fa-solid fa-file-pdf"></i></div><h3>Adobe Acrobat Reader</h3><p>Documentos PDF.</p><a href="https://wa.me/542614726854?text=Hola%2C%20quiero%20consultar%20por%20Adobe%20Acrobat%20Reader" target="_blank">Consultar</a></div>
+        <div class="programa-card"><div class="programa-icon"><i class="fa-solid fa-file-zipper"></i></div><h3>WinRAR</h3><p>Compresión y extracción de archivos.</p><a href="https://wa.me/542614726854?text=Hola%2C%20quiero%20consultar%20por%20WinRAR" target="_blank">Consultar</a></div>
+        <div class="programa-card"><div class="programa-icon"><i class="fa-solid fa-film"></i></div><h3>VLC Media Player</h3><p>Reproductor de videos y música.</p><a href="https://wa.me/542614726854?text=Hola%2C%20quiero%20consultar%20por%20VLC" target="_blank">Consultar</a></div>
+        <div class="programa-card"><div class="programa-icon"><i class="fa-solid fa-headset"></i></div><h3>AnyDesk</h3><p>Asistencia y conexión remota.</p><a href="https://wa.me/542614726854?text=Hola%2C%20quiero%20consultar%20por%20AnyDesk" target="_blank">Consultar</a></div>
+        <div class="programa-card"><div class="programa-icon"><i class="fa-brands fa-chrome"></i></div><h3>Google Chrome</h3><p>Navegador web.</p><a href="https://wa.me/542614726854?text=Hola%2C%20quiero%20consultar%20por%20Google%20Chrome" target="_blank">Consultar</a></div>
+      </div>
+    </section>
+
+
+    <!-- COMO FUNCIONA -->
+    <section id="como-funciona" class="proceso">
+
+        <h2>¿Cómo funciona?</h2>
+
+        <div class="pasos">
+
+            <div>
+                <span>1</span>
+                <h3>Escribinos</h3>
+                <p>Contactanos por WhatsApp.</p>
+            </div>
+
+            <div>
+                <span>2</span>
+                <h3>Coordinamos</h3>
+                <p>Elegimos el día y horario.</p>
+            </div>
+
+            <div>
+                <span>3</span>
+                <h3>Conectamos</h3>
+                <p>Realizamos la asistencia remota.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contacto">
+
+        <h2>¿Necesitás instalar un programa?</h2>
+
+        <p>
+            Consultanos sin compromiso.
+        </p>
+
+        <a class="boton-whatsapp"
+           href="https://wa.me/542614726854"
+           target="_blank">
+
+            <i class="fa-brands fa-whatsapp"></i>
+            Hablar por WhatsApp
+
+        </a>
+
+    </section>
+
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+
+    <a class="whatsapp-flotante"
+       href="https://wa.me/542614726854"
+       target="_blank">
+
+        <i class="fa-brands fa-whatsapp"></i>
+
+    </a>
+
+
+    <footer>
+        © 2026 SoportePC - Emanuel Garcia
+    </footer>
+
+    <!-- SCRIPT PARA ABRIR Y CERRAR EL MENÚ -->
+    <script>
+        const openBtn = document.getElementById('openMenu');
+        const closeBtn = document.getElementById('closeMenu');
+        const sidebar = document.getElementById('sidebarMenu');
+        const overlay = document.getElementById('menuOverlay');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        openBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Cierra el menú al hacer clic en cualquier enlace
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
